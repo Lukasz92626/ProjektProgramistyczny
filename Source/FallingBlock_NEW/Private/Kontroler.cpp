@@ -73,6 +73,23 @@ void AKontroler::SetupInputComponent() {
 	}
 }
 
+/*	Metoda odpowiedzialna za ruch w prawo
+*/
+
+void AKontroler::ruch_w_prawo_test() {
+	//UE_LOG(LogTemp, Warning, TEXT("Ruch w prawo"));
+	ruch_w_prawo();
+}
+
+/*	Metoda odpowiedzialna za ruch w lewo
+*/
+
+void AKontroler::ruch_w_lewo_test() {
+	//Plan->ruch_w_lewo();
+	//UE_LOG(LogTemp, Warning, TEXT("Ruch w lewo"));
+	ruch_w_lewo();
+}
+
 /*	Metoda odpowiedzialna za obrot
 */
 
@@ -90,14 +107,15 @@ void AKontroler::opadanie_test() {
 	}
 	int8 suma_kontrolna = 0; //jesli rowne ilosci szescianow bloku to oznacza, ze kazdy szescian bloku moze sie poruszyc sie w dol
 	for (int8 i = 0; i < ile_szescianow_bloku; ++i) {
-		if (wsp_akt_bloku[i][1] > 1) { //sprawdza czy nie jest na samym dole
+		if (wsp_akt_bloku[i][1] > 0) { //sprawdza czy nie jest na samym dole
 			if (szesciany_na_planszy[wsp_akt_bloku[i][0]][wsp_akt_bloku[i][1] - 2] == nullptr) { //sprawdza czy pole pod szescianem nie jest zajete
 				++suma_kontrolna;
 			}
 		}
 	}
+	//sprawdzanie czy blok zmiescil sie na planszy
 	if (suma_kontrolna != ile_szescianow_bloku)
-		return;
+		return
 	//UE_LOG(LogTemp, Warning, TEXT("Ruch w dol"));
 	opadanie();
 }

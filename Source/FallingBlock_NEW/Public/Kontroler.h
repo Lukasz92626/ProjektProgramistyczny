@@ -30,12 +30,19 @@ public:
 
 	virtual void SetupInputComponent() override;
 
+	//public:
+	void ruch_w_prawo_test();
+	void ruch_w_lewo_test();
+
 	void obrot_test();
 	void opadanie_test();
 
-	// Called every frame
+	void pauza_test();
+
+		// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//public:
 	int8 szerokosc_planszy; //liczona w blokach
 	int8 wysokosc_planszy; //liczona w blokach
 	int8 szer_szescianu; //szerokosc pojedynczego szescianu
@@ -128,7 +135,7 @@ public:
 	void log_znak(char znak);
 	void log_float(float znak);
 
-	FTimerHandle OpadanieTimer; //timer odpowiedzialny za opadanie bloku
+	FTimerHandle OpadanieTimer;
 	float opadanie_przerwa = 1.0f; // 1.0f najlepiej dla zmiennego w czasie
 
 	void UpdatePunkty();
@@ -137,6 +144,7 @@ public:
 	void UpdateKoniecGry();
 	void WyczyscInformacja();
 	void ustaw_do_zdobycia();
+	//void wyczysc_do_zdobycia();
 
 	void czyszczenie_planszy();
 	void przyspieszanie_opadania();

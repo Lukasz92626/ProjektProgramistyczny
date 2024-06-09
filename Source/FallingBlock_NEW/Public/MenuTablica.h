@@ -151,11 +151,10 @@ public:
 
 	int32 min_idx;
 	UTablicaRekordowSaveGame* LoadGameInstance;
+	//UMenuWidget* Menu;
 	bool czy_powrot;
 
 	TArray<int32> punkty;
 	TArray<int32> tryb;
 	TArray<FDateTime> data_godzina;
-
-	void log_liczba(int liczba);
 };

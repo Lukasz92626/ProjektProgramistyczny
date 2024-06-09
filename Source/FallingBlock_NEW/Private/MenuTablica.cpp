@@ -7,15 +7,6 @@
 #include "Blueprint/UserWidget.h"
 #include "TablicaRekordowSaveGame.h"
 
-/*	Funkcja do zwracania liczb typu int do logow
-*	liczba - zwracana liczba do logow
-*/
-
-void UMenuTablica::log_liczba(int liczba) {
-	FText tmp = FText::AsNumber(liczba);
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *tmp.ToString());
-}
-
 void UMenuTablica::NativeConstruct() {
 	Super::NativeConstruct();
 	LoadGameInstance = nullptr;
@@ -35,9 +26,6 @@ void UMenuTablica::NativeConstruct() {
 }
 
 void UMenuTablica::klinieto_poprzednia() {
-	UE_LOG(LogTemp, Warning, TEXT("min_idx"));
-	log_liczba(min_idx);
-	log_liczba(punkty.Num());
 	if (min_idx - 10 >= 0) {
 		min_idx -= 10;
 		wypisz_tablice_posortowana();
@@ -45,9 +33,6 @@ void UMenuTablica::klinieto_poprzednia() {
 }
 
 void UMenuTablica::klinieto_nastepna() {
-	UE_LOG(LogTemp, Warning, TEXT("min_idx"));
-	log_liczba(min_idx);
-	log_liczba(punkty.Num());
 	if (min_idx + 10 < punkty.Num()) {
 		min_idx += 10;
 		wypisz_tablice_posortowana();
@@ -57,6 +42,7 @@ void UMenuTablica::klinieto_nastepna() {
 void UMenuTablica::klinieto_powrot() {
 	this->SetVisibility(ESlateVisibility::Hidden);
 	czy_powrot = true;
+	//Menu->SetVisibility(ESlateVisibility::Visible);
 }
 
 void UMenuTablica::wypisz_tablice_posortowana() {
@@ -391,9 +377,6 @@ void UMenuTablica::wyczysc_tablice() {
 
 void UMenuTablica::wczytaj_tablice() {
 	LoadGameInstance = Cast<UTablicaRekordowSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("TablicaSaveSlot"), 0));
-	if (!LoadGameInstance) {
-		LoadGameInstance = Cast<UTablicaRekordowSaveGame>(UGameplayStatics::CreateSaveGameObject(UTablicaRekordowSaveGame::StaticClass()));
-	}
 	//LoadGameInstance->czyszczenie();///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//sortuj_dane();
 }
@@ -429,6 +412,4 @@ void UMenuTablica::sortuj_dane() {
 	for (int i = 0; i < punkty.Num(); ++i) {
 		UE_LOG(LogTemp, Warning, TEXT("%d %d %s"), punkty[i], tryb[i], *data_godzina[i].ToString());
 	}
-	/*UE_LOG(LogTemp, Warning, TEXT("punkty.Num()"));
-	log_liczba(punkty.Num());*/
 }
